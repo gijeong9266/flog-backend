@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.b.flog_backend.meal.mapper.CalorieMapper">
+    
+    <insert id="insertTodayCalorie" parameterType="com.b.flog_backend.meal.dto.TodayCalorieDto" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO m_today_calorie(user_id, date)
+        VALUES(#{userId}, NOW())
+    </insert>
+
+    <insert id="insertMeal" parameterType="com.b.flog_backend.meal.dto.MealDto">
+        INSERT INTO m_meal(today_calorie_id, type)
+        VALUES(#{todayCalorieId}, #{type})
+    </insert>
+
+    <insert id="insertFood" parameterType="com.b.flog_backend.meal.dto.FoodDto">
+        INSERT INTO m_food(meal_id, name, calorie, imageAddress)
+        VALUES(#{mealId}, #{name}, #{calorie}, #{imageAddress})
+    </insert>
+
+    <select id="findTodayCalorieListByUserId" parameterType="int" resultType="com.b.flog_backend.meal.dto.TodayCalorieDto">
+        SELECT * FROM m_today_calorie WHERE user_id = #{userId}
+    </select>
+
+    <select id="findTodayCalorieByUserIdAndDate" resultType="com.b.flog_backend.meal.dto.TodayCalorieDto">
+        SELECT * FROM m_today_calorie WHERE user_id = #{userId} AND date = #{date}
+    </select>
+
+    <select id="findTotalCalorieByTodayCalorie" parameterType="com.b.flog_backend.meal.dto.TodayCalorieDto" resultType="com.b.flog_backend.meal.response.TotalCalorie">
+        SELECT
+            mm.type,
+            COALESCE(SUM(mf.calorie), 0) AS total_calorie
+        FROM m_meal mm
+        LEFT JOIN m_food mf ON mm.id = mf.meal_id
+        JOIN m_today_calorie mtc ON mtc.id = mm.today_calorie_id
+        WHERE mtc.date = #{date} AND mtc.user_id = #{userId}
+        GROUP BY mm.type
+        ORDER BY mm.id;
+    </select>
+
+    <select id="findTodayCalorieById" parameterType="int" resultType="com.b.flog_backend.meal.dto.TodayCalorieDto">
+        SELECT * FROM m_today_calorie WHERE id = #{id}
+    </select>
+
+</mapper>
