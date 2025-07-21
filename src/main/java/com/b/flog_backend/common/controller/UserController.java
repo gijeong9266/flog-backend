@@ -21,6 +21,11 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody UserRequest userRequest) {
+
+        if (userService.findByAccountName(userRequest.getAccountName()) != null) {
+            return ResponseEntity.status(400).body(new ApiResponse(false, "이미 존재하는 계정명입니다."));
+        }
+
         User user = new User();
         user.setAccountName(userRequest.getAccountName());
         user.setPassword(userRequest.getPassword());
