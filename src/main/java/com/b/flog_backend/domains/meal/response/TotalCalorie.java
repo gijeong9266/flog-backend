@@ -1,4 +1,4 @@
-package com.b.flog_backend.meal.response;
+package com.b.flog_backend.domains.meal.response;
 
 import lombok.Data;
 

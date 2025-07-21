@@ -1,15 +1,14 @@
-package com.b.flog_backend.meal.mapper;
+package com.b.flog_backend.domains.meal.mapper;
 
 import java.time.LocalDate;
 import java.util.List;
 
+import com.b.flog_backend.domains.meal.dto.FoodDto;
+import com.b.flog_backend.domains.meal.dto.MealDto;
+import com.b.flog_backend.domains.meal.dto.TodayCalorieDto;
+import com.b.flog_backend.domains.meal.response.TotalCalorie;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
-import com.b.flog_backend.meal.dto.FoodDto;
-import com.b.flog_backend.meal.dto.MealDto;
-import com.b.flog_backend.meal.dto.TodayCalorieDto;
-import com.b.flog_backend.meal.response.TotalCalorie;
 
 @Mapper
 public interface CalorieMapper {

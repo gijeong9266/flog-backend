@@ -1,8 +1,11 @@
-package com.b.flog_backend.meal.controller;
+package com.b.flog_backend.domains.meal.controller;
 
 import java.time.LocalDate;
 import java.util.List;
 
+import com.b.flog_backend.domains.meal.dto.TodayCalorieDto;
+import com.b.flog_backend.domains.meal.response.TotalCalorie;
+import com.b.flog_backend.domains.meal.service.CalorieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,10 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.b.flog_backend.meal.dto.TodayCalorieDto;
-import com.b.flog_backend.meal.response.TotalCalorie;
-import com.b.flog_backend.meal.service.CalorieService;
 
 @RestController
 @RequestMapping("/meal/calorie")

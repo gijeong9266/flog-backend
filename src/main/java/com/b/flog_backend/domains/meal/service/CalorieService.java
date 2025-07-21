@@ -1,16 +1,16 @@
-package com.b.flog_backend.meal.service;
+package com.b.flog_backend.domains.meal.service;
 
 import java.time.LocalDate;
 import java.util.List;
 
+import com.b.flog_backend.domains.meal.dto.FoodDto;
+import com.b.flog_backend.domains.meal.dto.MealDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.b.flog_backend.meal.dto.FoodDto;
-import com.b.flog_backend.meal.dto.MealDto;
-import com.b.flog_backend.meal.dto.TodayCalorieDto;
-import com.b.flog_backend.meal.mapper.CalorieMapper;
-import com.b.flog_backend.meal.response.TotalCalorie;
+import com.b.flog_backend.domains.meal.dto.TodayCalorieDto;
+import com.b.flog_backend.domains.meal.mapper.CalorieMapper;
+import com.b.flog_backend.domains.meal.response.TotalCalorie;
 
 @Service
 public class CalorieService {

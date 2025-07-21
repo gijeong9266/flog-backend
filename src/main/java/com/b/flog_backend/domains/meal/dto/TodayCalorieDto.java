@@ -1,4 +1,4 @@
-package com.b.flog_backend.meal.dto;
+package com.b.flog_backend.domains.meal.dto;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
