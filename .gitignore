@@ -36,5 +36,5 @@ out/
 ### VS Code ###
 .vscode/
 
-### 앱설정 ###
+### 앱설정 ### 맥있을때 
 .DS_Store
