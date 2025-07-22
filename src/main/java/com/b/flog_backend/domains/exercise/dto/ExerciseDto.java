@@ -7,6 +7,8 @@ import lombok.Data;
 @Data
 public class ExerciseDto {
     private int id;
+    private int routineId;
+    private int userId;
     private String sector;
     private String exerciseName;
     private LocalDateTime createdAt;
