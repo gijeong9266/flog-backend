@@ -1,7 +1,9 @@
 package com.b.flog_backend.common.model;
 
 import lombok.Data;
-import java.util.Date;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 public class User {
@@ -11,8 +13,8 @@ public class User {
     private String nickname;
     private String email;
     private String gender;
-    private Date birth;
+    private LocalDate birth;
     private String phone;
     private String img;
-    private Date createdAt;
+    private LocalDateTime createdAt;
 }
