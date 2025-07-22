@@ -21,6 +21,11 @@
         SELECT * FROM m_today_calorie WHERE user_id = #{userId}
     </select>
 
+    <select id="findTodayCalorieByUserId" parameterType="int" resultType="com.b.flog_backend.domains.meal.dto.TodayCalorieDto">
+        SELECT * FROM m_today_calorie WHERE user_id = #{userId}
+        AND DATE(date) = CURDATE();
+    </select>
+
     <select id="findTodayCalorieByUserIdAndDate" resultType="com.b.flog_backend.domains.meal.dto.TodayCalorieDto">
         SELECT * FROM m_today_calorie WHERE user_id = #{userId} AND date = #{date}
     </select>

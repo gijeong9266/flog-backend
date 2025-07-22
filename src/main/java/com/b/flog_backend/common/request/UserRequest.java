@@ -1,7 +1,8 @@
 package com.b.flog_backend.common.request;
 
 import lombok.Data;
-import java.util.Date;
+
+import java.time.LocalDate;
 
 @Data
 public class UserRequest {
@@ -10,6 +11,6 @@ public class UserRequest {
     private String nickname;
     private String email;
     private String gender;
-    private Date birth;
+    private LocalDate birth;
     private String phone;
 }
