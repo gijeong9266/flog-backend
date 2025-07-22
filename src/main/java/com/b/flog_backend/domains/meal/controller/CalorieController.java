@@ -45,4 +45,17 @@ public class CalorieController {
     public List<TotalCalorie> findTotalCalorieByTodayCalorie(@RequestParam("todayCalorieId") int todayCalorieId) {
         return calorieService.findTotalCalorieByTodayCalorieId(todayCalorieId);
     }
+
+    @GetMapping("/findTodayTotalCalorie")
+    public List<TotalCalorie> findTodayCalorieByUserId() {
+        int userId = (int)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        TodayCalorieDto todayCalorieDto = calorieService.findTodayCalorieByUserId(userId);
+        if (todayCalorieDto == null) {
+            insertCalorie();
+            todayCalorieDto = calorieService.findTodayCalorieByUserId(userId);
+        }
+
+        return calorieService.findTotalCalorieByTodayCalorieId(todayCalorieDto.getId());
+    }
 }

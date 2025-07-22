@@ -43,6 +43,10 @@ public class CalorieService {
         return calorieMapper.findTodayCalorieListByUserId(userId);
     }
 
+    public TodayCalorieDto findTodayCalorieByUserId(int userId) {
+        return calorieMapper.findTodayCalorieByUserId(userId);
+    }
+
     public TodayCalorieDto findTodayCalorieByUserIdAndDate(int userId, LocalDate date) {
         return calorieMapper.findTodayCalorieByUserIdAndDate(userId, date);
     }

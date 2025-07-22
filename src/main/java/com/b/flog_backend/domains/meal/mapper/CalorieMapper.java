@@ -16,6 +16,7 @@ public interface CalorieMapper {
     void insertMeal(MealDto mealDto);
     void insertFood(FoodDto foodDto);
     List<TodayCalorieDto> findTodayCalorieListByUserId(int userId);
+    TodayCalorieDto findTodayCalorieByUserId(int userId);
     TodayCalorieDto findTodayCalorieByUserIdAndDate(@Param("userId") int userId, @Param("date") LocalDate date);
     List<TotalCalorie> findTotalCalorieByTodayCalorie(TodayCalorieDto todayCalorieDto);
     TodayCalorieDto findTodayCalorieById(int todayCalorieId);
