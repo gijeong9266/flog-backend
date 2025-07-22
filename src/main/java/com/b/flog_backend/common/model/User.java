@@ -13,5 +13,6 @@ public class User {
     private String gender;
     private Date birth;
     private String phone;
+    private String img;
     private Date createdAt;
 }
