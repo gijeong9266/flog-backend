@@ -5,11 +5,9 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class ExerciseDto {
+public class FollowDto {
     private int id;
-    private int userId;
-    private int routineId;
-    private String sector;
-    private String exerciseName;
+    private int followerId;
+    private int followeeId;
     private LocalDateTime createdAt;
 }

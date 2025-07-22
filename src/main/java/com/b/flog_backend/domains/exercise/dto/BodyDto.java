@@ -5,11 +5,11 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class ExerciseDto {
+public class BodyDto {
     private int id;
     private int userId;
-    private int routineId;
-    private String sector;
-    private String exerciseName;
+    private Double weight;
+    private Double bodyFatPercentage;
+    private Double skeletalMuscleMass;
     private LocalDateTime createdAt;
 }

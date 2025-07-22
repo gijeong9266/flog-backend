@@ -5,11 +5,10 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class ExerciseDto {
+public class commentDto {
     private int id;
     private int userId;
-    private int routineId;
-    private String sector;
-    private String exerciseName;
+    private int photoId;
+    private String content;
     private LocalDateTime createdAt;
 }
