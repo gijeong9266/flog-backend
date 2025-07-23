@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.b.flog_backend.domains.exercise.mapper.BodySqlMapper">
+
+<!-- 신체정보입력 -->
+<insert id="insertBodyInfo">
+    INSERT INTO e_body(user_id, weight, fat, muscle, record_date)
+    VALUES(#{userId}, #{weight}, #{fat}, #{muscle}, #{recordDate})
+</insert>
+
+</mapper>
