@@ -35,6 +35,11 @@ dependencies {
 	implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
 	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.3'
 	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.3'
+
+	// gemini
+	// implementation 'com.google.genai:google-genai:1.0.0'
+	// implementation platform("org.springframework.ai:spring-ai-bom:0.8.1-SNAPSHOT")
+    // implementation 'org.springframework.ai:spring-ai-vertex-ai-gemini-spring-boot-starter'
 }
 
 tasks.named('test') {
