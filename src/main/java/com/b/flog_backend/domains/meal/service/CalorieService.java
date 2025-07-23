@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.b.flog_backend.domains.meal.dto.FoodDto;
+import com.b.flog_backend.domains.meal.dto.GoalCalorieDto;
 import com.b.flog_backend.domains.meal.dto.MealDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,5 +55,21 @@ public class CalorieService {
     public List<TotalCalorie> findTotalCalorieByTodayCalorieId(int todayCalorieId) {
         TodayCalorieDto todayCalorieDto = calorieMapper.findTodayCalorieById(todayCalorieId);
         return calorieMapper.findTotalCalorieByTodayCalorie(todayCalorieDto);
+    }
+
+    public void insertGoalCalorie(GoalCalorieDto goalCalorieDto) {
+        calorieMapper.insertGoalCalorie(goalCalorieDto);
+    }
+
+    public void updateGoalCalorie(GoalCalorieDto goalCalorieDto) {
+        calorieMapper.updateGoalCalorie(goalCalorieDto);
+    }
+
+    public Integer selectGoalCalorieByUserId(int userId) {
+        return calorieMapper.selectGoalCalorieByUserId(userId);
+    }
+
+    public List<FoodDto> findFoodListByMealId(int mealId) {
+        return calorieMapper.findFoodListByMealId(mealId);
     }
 }

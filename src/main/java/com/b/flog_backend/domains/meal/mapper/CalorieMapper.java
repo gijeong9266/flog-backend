@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.b.flog_backend.domains.meal.dto.FoodDto;
+import com.b.flog_backend.domains.meal.dto.GoalCalorieDto;
 import com.b.flog_backend.domains.meal.dto.MealDto;
 import com.b.flog_backend.domains.meal.dto.TodayCalorieDto;
 import com.b.flog_backend.domains.meal.response.TotalCalorie;
@@ -20,4 +21,9 @@ public interface CalorieMapper {
     TodayCalorieDto findTodayCalorieByUserIdAndDate(@Param("userId") int userId, @Param("date") LocalDate date);
     List<TotalCalorie> findTotalCalorieByTodayCalorie(TodayCalorieDto todayCalorieDto);
     TodayCalorieDto findTodayCalorieById(int todayCalorieId);
+    
+    void insertGoalCalorie(GoalCalorieDto goalCalorieDto);
+    void updateGoalCalorie(GoalCalorieDto goalCalorieDto);
+    Integer selectGoalCalorieByUserId(int userId);
+    List<FoodDto> findFoodListByMealId(int mealId);
 }

@@ -13,8 +13,8 @@
     </insert>
 
     <insert id="insertFood" parameterType="com.b.flog_backend.domains.meal.dto.FoodDto">
-        INSERT INTO m_food(meal_id, name, calorie, imageAddress)
-        VALUES(#{mealId}, #{name}, #{calorie}, #{imageAddress})
+        INSERT INTO m_food(meal_id, name, calorie)
+        VALUES(#{mealId}, #{name}, #{calorie})
     </insert>
 
     <select id="findTodayCalorieListByUserId" parameterType="int" resultType="com.b.flog_backend.domains.meal.dto.TodayCalorieDto">
@@ -32,18 +32,42 @@
 
     <select id="findTotalCalorieByTodayCalorie" parameterType="com.b.flog_backend.domains.meal.dto.TodayCalorieDto" resultType="com.b.flog_backend.domains.meal.response.TotalCalorie">
         SELECT
+            mm.id as mealId,
             mm.type,
             COALESCE(SUM(mf.calorie), 0) AS total_calorie
         FROM m_meal mm
         LEFT JOIN m_food mf ON mm.id = mf.meal_id
         JOIN m_today_calorie mtc ON mtc.id = mm.today_calorie_id
         WHERE mtc.date = #{date} AND mtc.user_id = #{userId}
-        GROUP BY mm.type
+        GROUP BY mm.id, mm.type
         ORDER BY mm.id;
     </select>
 
     <select id="findTodayCalorieById" parameterType="int" resultType="com.b.flog_backend.domains.meal.dto.TodayCalorieDto">
         SELECT * FROM m_today_calorie WHERE id = #{id}
+    </select>
+
+    <insert id="insertGoalCalorie" parameterType="com.b.flog_backend.domains.meal.dto.GoalCalorieDto">
+        INSERT INTO m_goal_calorie(user_id, goal_calorie)
+        VALUES(#{userId}, #{goalCalorie})
+    </insert>
+
+    <update id="updateGoalCalorie" parameterType="com.b.flog_backend.domains.meal.dto.GoalCalorieDto">
+        UPDATE m_goal_calorie
+        SET goal_calorie = #{goalCalorie}
+        WHERE user_id = #{userId}
+    </update>
+
+    <select id="selectGoalCalorieByUserId" parameterType="int" resultType="Integer">
+        SELECT goal_calorie
+        FROM m_goal_calorie
+        WHERE user_id = #{userId}
+    </select>
+
+    <select id="findFoodListByMealId" parameterType="int" resultType="com.b.flog_backend.domains.meal.dto.FoodDto">
+        SELECT *
+        FROM m_food
+        WHERE meal_id = #{mealId}
     </select>
 
 </mapper>
