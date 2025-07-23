@@ -22,10 +22,11 @@ public class BodyController {
     private BodyServiceImpl bodyService;
 
     @PostMapping("/bodyInfo")
-    public Map<String, Object> createBodyInfo(@RequestBody BodyDto bodyDto, @AuthenticationPrincipal Integer userId){
+    public Map<String, Object> createBodyInfo(@RequestBody BodyDto bodyDto, @AuthenticationPrincipal int userId){
         Map<String, Object> map = new HashMap<>();
-        bodyDto.setUserId(userId);
+        
         bodyService.insertBodyInfo(bodyDto);
+        bodyDto.setUserId(userId);
         map.put("result", "success");
         return map;
     }
