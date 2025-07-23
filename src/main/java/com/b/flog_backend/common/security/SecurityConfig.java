@@ -27,12 +27,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .cors().and()
+            // .cors().and()
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))  // ✅ 최신 방식
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/user/**").permitAll()
-                .requestMatchers("/api/exercise/**").permitAll()
+                .requestMatchers("/api/user/**").permitAll()                
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form.disable())
