@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,8 +22,9 @@ public class BodyController {
     private BodyServiceImpl bodyService;
 
     @PostMapping("/bodyInfo")
-    public Map<String, Object> createBodyInfo(@RequestBody BodyDto bodyDto){
+    public Map<String, Object> createBodyInfo(@RequestBody BodyDto bodyDto, @AuthenticationPrincipal Integer userId){
         Map<String, Object> map = new HashMap<>();
+        bodyDto.setUserId(userId);
         bodyService.insertBodyInfo(bodyDto);
         map.put("result", "success");
         return map;
