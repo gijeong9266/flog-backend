@@ -10,5 +10,7 @@ public interface BodySqlMapper {
     // 신체 정보 입력
     public void insertBodyInfo(BodyDto bodyDto);
 
+    // 신체 정보 가져오기
+    public BodyDto getBodyInfoByUserId(int userId);
 
 }
