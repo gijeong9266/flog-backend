@@ -16,5 +16,10 @@ public class BodyServiceImpl {
         bodySqlMapper.insertBodyInfo(bodyDto);
     }
 
+    // 신체정보 가져오기
+    public BodyDto getBodyInfo(int userId){
+        return bodySqlMapper.getBodyInfoByUserId(userId);
+    }
+
 
 }

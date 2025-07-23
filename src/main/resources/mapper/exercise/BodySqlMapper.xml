@@ -8,4 +8,12 @@
     VALUES(#{userId}, #{weight}, #{fat}, #{muscle}, #{recordDate})
 </insert>
 
+<!-- 최신 신체정보 가져오기 -->
+<select id="getBodyInfoByUserId">
+    SELECT * FROM e_body eb
+    WHERE eb.user_id = #{userId}
+    ORDER BY id DESC
+    LIMIT 1
+</select>
+
 </mapper>
