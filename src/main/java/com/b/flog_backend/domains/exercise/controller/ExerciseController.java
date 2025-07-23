@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,8 +22,9 @@ public class ExerciseController {
 
     // 유저 아이디, 날짜별 조회
     @GetMapping("/exerciseLog")
-    public Map<String, Object> getExerciseLog(@RequestParam("userId") int userId, @RequestParam("logDate") String logDate){
+    public Map<String, Object> getExerciseLog(Authentication authentication, @RequestParam("logDate") String logDate){
         Map<String, Object> map = new HashMap();
+        int userId = (int) authentication.getPrincipal();
 
         List<ExerciseDto> exerciseList = exerciseService.getExerciseLog(userId, logDate);
         map.put("result", exerciseList);
