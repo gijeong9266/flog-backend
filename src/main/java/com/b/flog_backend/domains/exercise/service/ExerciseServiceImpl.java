@@ -18,4 +18,8 @@ public class ExerciseServiceImpl {
         return exerciseSqlMapper.getExerciseByUserIdAndLogDate(userId, logDate);
     }
 
+    // 유저 아이디별 운동날짜리스트 가져오기
+    public List<String> getRecordedDates(int userId) {
+        return exerciseSqlMapper.getRecordedDatesByUserId(userId);
+    }
 }

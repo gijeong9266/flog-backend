@@ -32,4 +32,16 @@ public class ExerciseController {
         return map;
     }
 
+    // 달력에 운동유무 표시
+    @GetMapping("/recordedDate")
+    public Map<String, Object> getRecordedDates(Authentication authentication){
+        Map<String, Object> map = new HashMap<>();
+        int userId = (int) authentication.getPrincipal();
+        List<String> list = exerciseService.getRecordedDates(userId);
+
+        map.put("result", list);
+
+        return map;
+    }
+
 }

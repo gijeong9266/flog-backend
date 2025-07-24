@@ -16,6 +16,7 @@ public interface ExerciseSqlMapper {
     // 유저 아이디, 날짜별 조회
     public List<ExerciseDto> getExerciseByUserIdAndLogDate(@Param("userId") int userId, @Param("logDate") String logDate);
 
-
+    // 유저 아이디별 운동날짜리스트 가져오기
+    public List<String> getRecordedDatesByUserId(int userId);
 
 }
