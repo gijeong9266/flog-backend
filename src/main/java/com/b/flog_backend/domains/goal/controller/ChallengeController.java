@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -29,8 +30,8 @@ public class ChallengeController {
     }
 
     // 챌린지 상세 조회
-    @GetMapping("/challengeDetail")
-    public ChallengeDto getChallengeById(int id) {
+    @GetMapping("/challengeDetail/{id}")
+    public ChallengeDto getChallengeById(@PathVariable int id) {
         return challengeService.getChallengeById(id);
     }
 
