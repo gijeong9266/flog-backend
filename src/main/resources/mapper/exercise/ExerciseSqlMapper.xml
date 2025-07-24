@@ -17,5 +17,17 @@
     SELECT DISTINCT log_date FROM e_exercise WHERE user_id = #{userId}
 </select>
 
+<!-- 운동 기록 추가 -->
+<insert id="insertExercise" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO e_exercise (user_id, sector, exercise_name, log_date, log_time, is_logged_exercise)
+    VALUES (#{userId}, #{sector}, #{exerciseName}, #{logDate}, #{logTime}, #{isLoggedExercise})
+</insert>
+
+<!-- 운동 세트 추가 -->
+<insert id="insertExerciseSet">
+    INSERT INTO e_exercise_set (exercise_id, set_number, intensity, reps)
+    VALUES (#{exerciseId}, #{setNumber}, #{intensity}, #{reps})
+</insert>
+
 
 </mapper>

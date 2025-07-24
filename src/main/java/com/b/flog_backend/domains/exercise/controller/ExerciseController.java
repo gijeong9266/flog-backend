@@ -6,13 +6,12 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.b.flog_backend.domains.exercise.dto.ExerciseDto;
 import com.b.flog_backend.domains.exercise.service.ExerciseServiceImpl;
+
+import com.b.flog_backend.domains.exercise.dto.ExerciseLogRequestDto;
 
 @RestController
 @RequestMapping("/api/exercise")
@@ -41,6 +40,17 @@ public class ExerciseController {
 
         map.put("result", list);
 
+        return map;
+    }
+
+    @PostMapping("/inputExerciseLog")
+    public Map<String, Object> addExerciseLog(Authentication authentication, @RequestBody ExerciseLogRequestDto payload) {
+        Map<String, Object> map = new HashMap<>();
+        int userId = (int) authentication.getPrincipal();
+
+        exerciseService.addFullExerciseLog(payload, userId);
+
+        map.put("result", "success");
         return map;
     }
 
