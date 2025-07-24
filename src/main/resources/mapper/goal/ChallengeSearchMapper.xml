@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.b.flog_backend.domains.goal.mapper.ChallengeSearchMapper">
+
+    <!-- 유저id 기반으로 해당 챌린지가 있는지 조회 -->
+    <select id="isChallengeExistsByUserId" parameterType="map" resultType="int">
+        SELECT COUNT(*)
+        FROM c_challenge
+        WHERE creator_id = #{userId}
+        AND id = #{challengeId}
+        AND is_deleted = 'N'
+    </select>
+
+
+</mapper>

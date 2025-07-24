@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import lombok.Data;
 
 @Data
-public class ChallengeHeart {
+public class ChallengeHeartDto {
     private int id;
     private int userId;
     private int challengeId;

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,6 @@ import com.b.flog_backend.domains.exercise.service.BodyServiceImpl;
 
 @RestController
 @RequestMapping("/api/exercise")
-@CrossOrigin(origins= "http://localhost:5173")
 public class BodyController {
     @Autowired
     private BodyServiceImpl bodyService;
@@ -36,9 +36,9 @@ public class BodyController {
 
     // get
     @GetMapping("/bodyInfo")
-    public Map<String, Object> getBodyInfo(@RequestParam ("userId") int userId) {
+    public Map<String, Object> getBodyInfo(Authentication authentication) {
         Map<String, Object> map = new HashMap<>();
-        
+        int userId = (int) authentication.getPrincipal();
         BodyDto dto = bodyService.getBodyInfo(userId);
         map.put("result", "success");
         map.put("bodyInfo", dto);

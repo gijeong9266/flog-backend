@@ -1,14 +1,16 @@
 package com.b.flog_backend.domains.goal.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import lombok.Data;
 
 @Data
-public class ChallengeReview {
+public class AuthCheckDto {
     private int id;
     private int partId;
-    private int rating;
+    private String img;
     private String content;
-    private LocalDateTime createdAt;
+    private LocalDate checkDate;
+    private LocalDateTime checkedAt;
 }
