@@ -2,6 +2,7 @@ package com.b.flog_backend.domains.meal.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 // import java.io.IOException;
 // import java.nio.file.Files;
@@ -24,9 +25,12 @@ import com.b.flog_backend.domains.meal.service.CalorieService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -174,5 +178,20 @@ public class CalorieController {
     @GetMapping("findFoodListByMealId")
     public List<FoodDto> findFoodListByMealId(@RequestParam("mealId") int mealId) {
         return calorieService.findFoodListByMealId(mealId);
+    }
+    
+    @PutMapping("updateFood")
+    public void updateFood(@RequestBody FoodDto foodDto) {
+        calorieService.updateFood(foodDto);
+    }
+
+    @DeleteMapping("deleteFood")
+    public void deleteFood(@RequestParam("id") int id) {
+        calorieService.deleteFood(id);
+    }
+
+    @GetMapping("findCalorie")
+    public List<Map<String, Object>> findCalorie() {
+        return calorieService.findCalorie(getUserId());
     }
 }

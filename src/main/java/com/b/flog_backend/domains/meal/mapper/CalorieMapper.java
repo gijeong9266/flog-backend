@@ -2,6 +2,7 @@ package com.b.flog_backend.domains.meal.mapper;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import com.b.flog_backend.domains.meal.dto.FoodDto;
 import com.b.flog_backend.domains.meal.dto.GoalCalorieDto;
@@ -26,4 +27,7 @@ public interface CalorieMapper {
     void updateGoalCalorie(GoalCalorieDto goalCalorieDto);
     Integer selectGoalCalorieByUserId(int userId);
     List<FoodDto> findFoodListByMealId(int mealId);
+    void updateFood(FoodDto foodDto);
+    void deleteFood(int id);
+    List<Map<String, Object>> findCalorie(@Param("userId")int userId);
 }

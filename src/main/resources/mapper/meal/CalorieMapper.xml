@@ -70,4 +70,23 @@
         WHERE meal_id = #{mealId}
     </select>
 
+    <update id="updateFood" parameterType="com.b.flog_backend.domains.meal.dto.FoodDto">
+        UPDATE m_food
+        SET name = #{name}, calorie = #{calorie}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteFood" parameterType="int">
+        DELETE FROM m_food WHERE id = #{id}
+    </delete>
+
+    <select id="findCalorie" resultType="Map">
+        SELECT mtc.date, SUM(mf.calorie) as calorie 
+        FROM m_today_calorie mtc
+        JOIN m_meal mm ON mtc.id = mm.today_calorie_id
+        JOIN m_food mf ON mm.id = mf.meal_id
+        WHERE mtc.user_id = #{userId}
+        GROUP BY mtc.date
+    </select>
+
 </mapper>

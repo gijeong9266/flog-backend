@@ -2,6 +2,7 @@ package com.b.flog_backend.domains.meal.service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import com.b.flog_backend.domains.meal.dto.FoodDto;
 import com.b.flog_backend.domains.meal.dto.GoalCalorieDto;
@@ -71,5 +72,17 @@ public class CalorieService {
 
     public List<FoodDto> findFoodListByMealId(int mealId) {
         return calorieMapper.findFoodListByMealId(mealId);
+    }
+
+    public void updateFood(FoodDto foodDto) {
+        calorieMapper.updateFood(foodDto);
+    }
+
+    public void deleteFood(int id) {
+        calorieMapper.deleteFood(id);
+    }
+
+    public List<Map<String, Object>> findCalorie(int userId) {
+        return calorieMapper.findCalorie(userId);
     }
 }
