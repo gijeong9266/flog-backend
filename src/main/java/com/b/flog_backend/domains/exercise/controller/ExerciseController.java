@@ -48,6 +48,18 @@ public class ExerciseController {
         return map;
     }
 
+    // 유저별 루틴 리스트 불러오기
+    @GetMapping("/getRoutineList")
+    public Map<String, Object> getRoutineList(@AuthenticationPrincipal Integer userId){
+        Map<String, Object> map = new HashMap<>();
+        map.put("result", exerciseService.getRoutineDtoList(userId));
+        return map;
+    }
+
+
+
+
+    // 운동 및 세트 저장
     @PostMapping("/inputExerciseLog")
     public Map<String, Object> addExerciseLog(@AuthenticationPrincipal Integer userId, @RequestBody ExerciseLogRequestDto payload) {
         Map<String, Object> map = new HashMap<>();
@@ -57,5 +69,7 @@ public class ExerciseController {
         map.put("result", "success");
         return map;
     }
+
+
 
 }

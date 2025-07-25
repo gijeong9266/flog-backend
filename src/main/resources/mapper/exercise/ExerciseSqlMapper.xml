@@ -48,4 +48,11 @@
         set_number ASC
 </select>
 
+
+<!-- 유저별 루틴 조회(List) -->
+<select id="getRoutineDtoListByUserId">
+    SELECT * FROM e_routine
+    WHERE user_id = #{userId}
+</select>
+
 </mapper>

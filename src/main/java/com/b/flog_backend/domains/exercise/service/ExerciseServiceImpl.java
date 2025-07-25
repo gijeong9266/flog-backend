@@ -11,6 +11,7 @@ import com.b.flog_backend.domains.exercise.dto.ExerciseDto;
 import com.b.flog_backend.domains.exercise.dto.ExerciseLogRequestDto;
 import com.b.flog_backend.domains.exercise.dto.ExercisePayloadDto;
 import com.b.flog_backend.domains.exercise.dto.ExerciseSetDto;
+import com.b.flog_backend.domains.exercise.dto.RoutineDto;
 import com.b.flog_backend.domains.exercise.mapper.ExerciseDomainMapper;
 import com.b.flog_backend.domains.exercise.mapper.ExerciseSqlMapper;
 
@@ -71,4 +72,12 @@ public class ExerciseServiceImpl {
             }
         }
     }
+
+
+    public List<RoutineDto> getRoutineDtoList(int userId){
+        
+        return exerciseSqlMapper.getRoutineDtoListByUserId(userId);
+    }
+
+
 }
