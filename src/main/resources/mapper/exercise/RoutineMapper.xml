@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.b.flog_backend.domains.exercise.mapper.RoutineMapper">
+
+    <insert id="insertRoutine" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO e_routine (user_id, routine_name)
+        VALUES (#{userId}, #{routineName})
+    </insert>
+
+    <insert id="insertExercises" parameterType="java.util.List">
+        INSERT INTO e_exercise (user_id, routine_id, sector, exercise_name, is_logged_exercise)
+        VALUES
+        <foreach collection="list" item="exercise" separator=",">
+            (#{exercise.userId}, #{exercise.routineId}, #{exercise.sector}, #{exercise.exerciseName}, false)
+        </foreach>
+    </insert>
+
+</mapper>
