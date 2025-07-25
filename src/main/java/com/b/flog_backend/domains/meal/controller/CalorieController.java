@@ -25,7 +25,6 @@ import com.b.flog_backend.domains.meal.service.CalorieService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -193,5 +192,15 @@ public class CalorieController {
     @GetMapping("findCalorie")
     public List<Map<String, Object>> findCalorie() {
         return calorieService.findCalorie(getUserId());
+    }
+
+    @GetMapping("findFoodListByDate")
+    public List<Map<String, Object>> findFoodListByDate(@RequestParam("date") LocalDate date) {
+        return calorieService.findfoodListByDate(getUserId(), date);
+    }
+
+    @GetMapping("/findGoalCalorieByDate")
+    public int findGoalCalorieByDate(@RequestParam("date") LocalDate date) {
+        return calorieService.findGoalCalorieByDate(getUserId(), date);
     }
 }

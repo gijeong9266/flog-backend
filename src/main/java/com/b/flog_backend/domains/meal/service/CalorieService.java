@@ -85,4 +85,16 @@ public class CalorieService {
     public List<Map<String, Object>> findCalorie(int userId) {
         return calorieMapper.findCalorie(userId);
     }
+    
+    public List<Map<String, Object>> findfoodListByDate(int userId, LocalDate date) {
+        return calorieMapper.findfoodListByDate(userId, date);
+    }
+
+    public int findGoalCalorieByDate(int userId, LocalDate date) {
+        Integer goalCalorie = calorieMapper.findGoalCalorieByDate(userId, date);
+        if (goalCalorie == null) {
+            return 1800;
+        }
+        return goalCalorie;
+    }
 }
