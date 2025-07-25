@@ -1,17 +1,19 @@
 package com.b.flog_backend.domains.exercise.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.b.flog_backend.domains.exercise.dto.ExerciseDto;
-import com.b.flog_backend.domains.exercise.mapper.ExerciseSqlMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.b.flog_backend.domains.exercise.dto.ExerciseDto;
 import com.b.flog_backend.domains.exercise.dto.ExerciseLogRequestDto;
 import com.b.flog_backend.domains.exercise.dto.ExercisePayloadDto;
 import com.b.flog_backend.domains.exercise.dto.ExerciseSetDto;
+import com.b.flog_backend.domains.exercise.dto.RoutineDto;
 import com.b.flog_backend.domains.exercise.mapper.ExerciseDomainMapper;
-import org.springframework.transaction.annotation.Transactional;
+import com.b.flog_backend.domains.exercise.mapper.ExerciseSqlMapper;
 
 @Service
 public class ExerciseServiceImpl {
@@ -22,8 +24,34 @@ public class ExerciseServiceImpl {
     private ExerciseDomainMapper exerciseDomainMapper;
 
     // 유저 아이디, 날짜별 조회
-    public List<ExerciseDto> getExerciseLog(int userId, String logDate) {
-        return exerciseSqlMapper.getExerciseByUserIdAndLogDate(userId, logDate);
+    // public List<ExerciseDto> getExerciseLog(int userId, String logDate) {
+    //     return exerciseSqlMapper.getExerciseByUserIdAndLogDate(userId, logDate);
+    // }
+
+    public List<ExercisePayloadDto> getExerciseLog(int userId, String logDate){
+
+        List<ExerciseDto> exerciseDtos = exerciseSqlMapper.getExerciseByUserIdAndLogDate(userId, logDate);
+        List<ExercisePayloadDto> exercisePayloads = new ArrayList<>();
+
+        for (ExerciseDto exerciseDto : exerciseDtos) {
+            List<ExerciseSetDto> setDtos = exerciseSqlMapper.getExerciseSetsByExerciseId(exerciseDto.getId());
+
+            ExercisePayloadDto payload = new ExercisePayloadDto();
+            payload.setExerciseName(exerciseDto.getExerciseName()); 
+            payload.setSector(exerciseDto.getSector());
+            payload.setSets(setDtos);
+            if(exerciseDto.getLogDate() != null){
+                payload.setLogDate(exerciseDto.getLogDate().toString());
+            }
+            if (exerciseDto.getLogTime() != null){
+                payload.setLogTime(exerciseDto.getLogTime().toString());
+            }
+
+            exercisePayloads.add(payload);
+        }
+
+        return exercisePayloads;
+
     }
 
     // 유저 아이디별 운동날짜리스트 가져오기
@@ -44,4 +72,12 @@ public class ExerciseServiceImpl {
             }
         }
     }
+
+
+    public List<RoutineDto> getRoutineDtoList(int userId){
+        
+        return exerciseSqlMapper.getRoutineDtoListByUserId(userId);
+    }
+
+
 }
