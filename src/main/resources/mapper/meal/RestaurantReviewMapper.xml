@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.b.flog_backend.domains.meal.mapper.RestaurantReviewMapper">
+
+    <insert id="insertRestaurantReview" parameterType="com.b.flog_backend.domains.meal.dto.RestaurantReviewDto">
+        INSERT INTO m_restaurant_review (user_id, place_id, rating, content)
+        VALUES (#{userId}, #{placeId}, #{rating}, #{content})
+    </insert>
+
+    <update id="updateRestaurantReview" parameterType="com.b.flog_backend.domains.meal.dto.RestaurantReviewDto">
+        UPDATE m_restaurant_review
+        SET
+            user_id = #{userId},
+            place_id = #{placeId},
+            rating = #{rating},
+            content = #{content}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteRestaurantReview" parameterType="int">
+        DELETE FROM m_restaurant_review
+        WHERE id = #{id}
+    </delete>
+
+</mapper>
