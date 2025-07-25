@@ -30,4 +30,6 @@ public interface CalorieMapper {
     void updateFood(FoodDto foodDto);
     void deleteFood(int id);
     List<Map<String, Object>> findCalorie(@Param("userId")int userId);
+    public List<Map<String, Object>> findfoodListByDate(@Param("userId") int userId, @Param("date") LocalDate date);
+    public Integer findGoalCalorieByDate(@Param("userId") int userId, @Param("date") LocalDate date);
 }

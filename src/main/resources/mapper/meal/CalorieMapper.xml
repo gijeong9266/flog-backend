@@ -89,4 +89,20 @@
         GROUP BY mtc.date
     </select>
 
+    <select id="findfoodListByDate" resultType="Map">
+        SELECT mf.*, mm.type, mm.id
+        FROM m_today_calorie mtc
+        JOIN m_meal mm ON mtc.id = mm.today_calorie_id
+        JOIN m_food mf ON mm.id = mf.meal_id
+        WHERE mtc.user_id = #{userId} AND mtc.date = #{date}
+        ORDER BY FIELD(mm.type, '아침', '점심', '저녁', '기타')
+    </select>
+
+    <select id="findGoalCalorieByDate" resultType="Integer">
+        SELECT goal_calorie FROM m_goal_calorie
+        WHERE user_id = #{userId} AND created_at &lt;= DATE_ADD(#{date}, INTERVAL 1 DAY)
+        ORDER BY created_at DESC
+        LIMIT 1
+    </select>
+
 </mapper>
