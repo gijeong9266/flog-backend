@@ -2,11 +2,11 @@ package com.b.flog_backend.domains.exercise.mapper;
 
 import java.util.List;
 
-import com.b.flog_backend.domains.exercise.dto.ExerciseSetDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.b.flog_backend.domains.exercise.dto.ExerciseDto;
+import com.b.flog_backend.domains.exercise.dto.ExerciseSetDto;
 
 @Mapper
 public interface ExerciseSqlMapper {
@@ -25,5 +25,10 @@ public interface ExerciseSqlMapper {
 
     // 운동 세트 추가
     public void insertExerciseSet(ExerciseSetDto exerciseSetDto);
+
+
+    // ⭐
+    // 특정 운동 id에 해당하는 모든 세트 정보 조회
+    public List<ExerciseSetDto> getExerciseSetsByExerciseId(@Param("exerciseId") int exerciseId);;
 
 }
