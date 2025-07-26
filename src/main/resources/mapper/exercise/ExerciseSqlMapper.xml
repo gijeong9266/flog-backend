@@ -50,9 +50,35 @@
 
 
 <!-- 유저별 루틴 조회(List) -->
-<select id="getRoutineDtoListByUserId">
-    SELECT * FROM e_routine
-    WHERE user_id = #{userId}
+<resultMap id="routineWithExercisesResultMap" type="com.b.flog_backend.domains.exercise.dto.RoutineDto">
+    <id property="id" column="routine_id"/>
+    <result property="userId" column="user_id"/>
+    <result property="routineName" column="routine_name"/>
+    <result property="createdAt" column="created_at"/>
+    <collection property="exercises" ofType="com.b.flog_backend.domains.exercise.dto.ExerciseDto">
+        <id property="id" column="exercise_id"/>
+        <result property="sector" column="sector"/>
+        <result property="exerciseName" column="exercise_name"/>
+    </collection>
+</resultMap>
+
+<select id="getRoutineDtoListByUserId" resultMap="routineWithExercisesResultMap">
+    SELECT
+        r.id AS routine_id,
+        r.user_id,
+        r.routine_name,
+        r.created_at,
+        e.id AS exercise_id,
+        e.sector,
+        e.exercise_name
+    FROM
+        e_routine r
+    LEFT JOIN
+        e_exercise e ON r.id = e.routine_id
+    WHERE
+        r.user_id = #{userId}
+    ORDER BY
+        r.id, e.id
 </select>
 
 </mapper>

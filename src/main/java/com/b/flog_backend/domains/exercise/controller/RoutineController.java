@@ -22,7 +22,7 @@ public class RoutineController {
     private final RoutineService routineService;
 
     @PostMapping("/addRoutineAndExercises")
-    public ResponseEntity<ApiResponse<Void>> createRoutineAndExercises(@RequestBody ExerciseRoutineDto exerciseRoutineDto, @AuthenticationPrincipal(expression = "userId") int userId) {
+    public ResponseEntity<ApiResponse<Void>> createRoutineAndExercises(@RequestBody ExerciseRoutineDto exerciseRoutineDto, @AuthenticationPrincipal Integer userId) {
         routineService.createRoutineAndExercises(exerciseRoutineDto, userId);
         ApiResponse<Void> response = new ApiResponse<>(true, "Routine and exercises created successfully.", null);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
